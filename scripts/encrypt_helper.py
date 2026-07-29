@@ -89,7 +89,6 @@ def update_env_file(new_passphrase: str):
 
     os.environ["ENCRYPTION_KEY"] = new_passphrase
     os.environ["PW"] = new_passphrase
-    log_print(f"[ENV UPDATED] Set ENCRYPTION_KEY and PW to: '{new_passphrase}' in .env")
 
 def change_passphrase(old_pw: str, new_pw: str):
     repo_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -98,7 +97,6 @@ def change_passphrase(old_pw: str, new_pw: str):
         url_path = os.path.join(repo_dir, "url.json")
 
     if not os.path.exists(url_path):
-        log_print(f"[ERROR] Neither url-enc.json nor url.json exists in {repo_dir}.")
         return
 
     with open(url_path, "r", encoding="utf-8") as f:
@@ -106,8 +104,7 @@ def change_passphrase(old_pw: str, new_pw: str):
 
     try:
         plain = decrypt_text(cipher, old_pw)
-    except Exception as e:
-        log_print(f"[ERROR] Could not decrypt {os.path.basename(url_path)} using old password '{old_pw}': {e}")
+    except Exception:
         return
 
     new_cipher = encrypt_text(plain, new_pw)
@@ -116,24 +113,8 @@ def change_passphrase(old_pw: str, new_pw: str):
 
     update_env_file(new_pw)
 
-    log_print("\n=======================================================")
-    log_print("[SUCCESS] Password changed successfully!")
-    log_print(f"  Old Password: {old_pw}")
-    log_print(f"  New Password: {new_pw}")
-    log_print(f"  Updated files: {os.path.basename(url_path)} (re-encrypted) & .env (local)")
-    log_print("=======================================================")
-    log_print("IMPORTANT: Remember to update your GitHub Repository Secret!")
-    log_print("  Go to GitHub Repo -> Settings -> Secrets and variables -> Actions")
-    log_print(f"  Update secret 'ENCRYPTION_KEY' value to: {new_pw}")
-    log_print("=======================================================\n")
-
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        log_print("Usage:")
-        log_print("  Encrypt:        python scripts/encrypt_helper.py encrypt <passphrase> [url_or_json_file]")
-        log_print("  Decrypt:        python scripts/encrypt_helper.py decrypt <passphrase> [file_or_text]")
-        log_print("  Change Password: python scripts/encrypt_helper.py change-pw <old_pw> <new_pw>")
-        log_print("  Generate Key:   python scripts/encrypt_helper.py generate-key")
         sys.exit(1)
 
     action = sys.argv[1].lower()
@@ -145,7 +126,6 @@ if __name__ == '__main__':
                 old_pw = env_key
                 new_pw = sys.argv[2]
             else:
-                log_print("Usage: python scripts/encrypt_helper.py change-pw <old_pw> <new_pw>")
                 sys.exit(1)
         else:
             old_pw = sys.argv[2]
@@ -156,7 +136,6 @@ if __name__ == '__main__':
     elif action == "generate-key":
         new_key = secrets.token_hex(16)
         old_pw = os.environ.get("ENCRYPTION_KEY", "admin123")
-        log_print(f"[GENERATED NEW KEY]: {new_key}")
         
         repo_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         url_path = os.path.join(repo_dir, "url-enc.json")
@@ -182,13 +161,11 @@ if __name__ == '__main__':
             out_file = os.path.join(repo_dir, "url-enc.json")
             with open(out_file, "w", encoding="utf-8") as f:
                 f.write(encrypted)
-            log_print(f"[SUCCESS] Encrypted content from {os.path.basename(target)} written to: {out_file}")
         else:
             encrypted = encrypt_text(target, passphrase)
             out_file = os.path.join(repo_dir, "url-enc.json")
             with open(out_file, "w", encoding="utf-8") as f:
                 f.write(encrypted)
-            log_print(f"[SUCCESS] Encrypted string written to: {out_file}")
 
     elif action == "decrypt":
         passphrase = sys.argv[2] if len(sys.argv) > 2 else os.environ.get("ENCRYPTION_KEY", "admin123")
@@ -203,9 +180,5 @@ if __name__ == '__main__':
             with open(file_target, "r", encoding="utf-8") as f:
                 content = f.read()
             decrypted = decrypt_text(content, passphrase)
-            log_print(f"[DECRYPTED CONTENT ({os.path.basename(file_target)})]:\n{decrypted}")
         else:
             decrypted = decrypt_text(target, passphrase)
-            log_print(f"[DECRYPTED TEXT]:\n{decrypted}")
-    else:
-        log_print("Invalid action. Use 'encrypt', 'decrypt', 'change-pw', or 'generate-key'.")
