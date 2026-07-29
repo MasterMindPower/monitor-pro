@@ -2,13 +2,13 @@
   {
     "playlist_id": "1",
     "status": "SUCCESS",
-    "message": "Get latest data at 29-07-2026 10:05:43 PM IST",
-    "timestamp": "29-07-2026 10:05:43 PM IST"
+    "message": "Get latest data at 29-07-2026 10:10:39 PM IST",
+    "timestamp": "29-07-2026 10:10:39 PM IST"
   },
   {
     "playlist_id": "2",
     "status": "FAILED",
-    "message": "Fail to get latest at 29-07-2026 10:05:45 PM IST",
-    "timestamp": "29-07-2026 10:05:45 PM IST"
+    "message": "Fail to get latest at 29-07-2026 10:10:41 PM IST",
+    "timestamp": "29-07-2026 10:10:41 PM IST"
   }
 ]
