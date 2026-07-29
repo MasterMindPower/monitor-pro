@@ -1,6 +1,7 @@
 import os
 import sys
 import subprocess
+from datetime import datetime, timezone, timedelta
 from encrypt_helper import load_dotenv, encrypt_text
 
 load_dotenv()
@@ -42,9 +43,11 @@ def push_updates():
     if res.returncode != 0:
         print(f"[WARNING] script2_checker.py exited with code {res.returncode}")
 
-    # 3. Commit changes to Git
+    # 3. Commit changes to Git with Date and Time timestamp
+    ist_tz = timezone(timedelta(hours=5, minutes=30))
+    now_str = datetime.now(ist_tz).strftime("%d-%m-%Y %I:%M:%S %p IST")
     raw_msg = sys.argv[1].strip() if len(sys.argv) > 1 else ""
-    commit_msg = raw_msg if raw_msg else "Update playlists, cookies.json, and encrypted url-enc.json"
+    commit_msg = raw_msg if raw_msg else f"Update playlists, cookies.json & url-enc.json - {now_str}"
     print(f"[PUSH 3/4] Staging and committing files to Git with message: '{commit_msg}'...")
 
     # Stage files (url.json and .env remain ignored by .gitignore)
