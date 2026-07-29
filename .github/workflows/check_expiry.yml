@@ -1,9 +1,6 @@
 name: Monitor PRO Expiry Refresher
 
 on:
-  schedule:
-    # Runs every 5 minutes (Note: GitHub Actions delays cron execution during peak times)
-    - cron: '*/5 * * * *'
   workflow_dispatch:
   repository_dispatch:
     types: [refresh_check]
