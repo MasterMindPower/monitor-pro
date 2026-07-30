@@ -64,6 +64,42 @@ def format_epoch_to_ist(epoch_ms):
     dt = datetime.fromtimestamp(epoch_ms / 1000.0, tz=ist_tz)
     return dt.strftime("%d-%m-%y - %I:%M %p")
 
+def detect_type_data(item, export_url, refresh_url, res=None):
+    """
+    Auto-detects playlist type (m3u, m3u8, or json) from url.json item,
+    URL paths/parameters, HTTP Content-Type headers, or response text.
+    """
+    if item.get("type_data"):
+        return str(item.get("type_data")).strip()
+
+    combined_url = (export_url + " " + refresh_url).lower()
+
+    if re.search(r'[\./]m3u8(?:\?|$|/)|[?&]type=m3u8|[?&]format=m3u8|\bm3u8\b', combined_url):
+        return "m3u8"
+    if re.search(r'[\./]json(?:\?|$|/)|[?&]type=json|[?&]format=json|\bjson\b', combined_url):
+        return "json"
+    if re.search(r'[\./]m3u(?:\?|$|/)|[?&]type=m3u|[?&]format=m3u|\bm3u\b', combined_url):
+        return "m3u"
+
+    if res is not None and getattr(res, "status_code", 0) == 200:
+        content_type = res.headers.get("Content-Type", "").lower()
+        if "json" in content_type:
+            return "json"
+        if "mpegurl" in content_type:
+            if "m3u8" in combined_url:
+                return "m3u8"
+            return "m3u"
+        
+        text = res.text.strip()
+        if text.startswith("{") or text.startswith("["):
+            return "json"
+        if text.startswith("#EXTM3U"):
+            if "#EXT-X-STREAM-INF" in text or ".m3u8" in text:
+                return "m3u8"
+            return "m3u"
+
+    return "m3u"
+
 def fetch_and_update():
     repo_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     cookies_json_path = os.path.join(repo_dir, "cookies.json")
@@ -152,18 +188,6 @@ def fetch_and_update():
         refresh_url = item.get("url_refresh_link") or item.get("url") or item.get("playlist_link") or ""
         export_url = item.get("url_export_link") or refresh_url
 
-        type_data = item.get("type_data")
-        if not type_data:
-            target_url_check = (export_url or refresh_url).lower()
-            if "m3u8" in target_url_check:
-                type_data = "m3u8"
-            elif "json" in target_url_check:
-                type_data = "json"
-            elif "m3u" in target_url_check:
-                type_data = "m3u"
-            else:
-                type_data = "m3u"
-
         if not playlist_code:
             match = re.search(r'/(?:export|refresh)/([a-zA-Z0-9]+)', export_url or refresh_url)
             if match:
@@ -191,8 +215,10 @@ def fetch_and_update():
         # Step 2: Fetch export_url to retrieve playlist data & extract cookie / exp
         target_url = export_url if export_url else refresh_url
         cache_buster_export = target_url + ("&" if "?" in target_url else "?") + f"_t={int(time.time())}"
+        res = None
         try:
             res = requests.get(cache_buster_export, headers=headers, timeout=20)
+            type_data = detect_type_data(item, export_url, refresh_url, res)
             
             if res.status_code != 200:
                 log_msg = f"Fail to get latest at {now_ist_str}"
@@ -236,6 +262,7 @@ def fetch_and_update():
             results.append(result_entry)
 
         except Exception:
+            type_data = detect_type_data(item, export_url, refresh_url, None)
             log_msg = f"Fail to get latest at {now_ist_str}"
             log_status = "FAILED"
             print(f"playlist_{playlist_id} failed")
