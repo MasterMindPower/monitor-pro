@@ -152,6 +152,18 @@ def fetch_and_update():
         refresh_url = item.get("url_refresh_link") or item.get("url") or item.get("playlist_link") or ""
         export_url = item.get("url_export_link") or refresh_url
 
+        type_data = item.get("type_data")
+        if not type_data:
+            target_url_check = (export_url or refresh_url).lower()
+            if "m3u8" in target_url_check:
+                type_data = "m3u8"
+            elif "json" in target_url_check:
+                type_data = "json"
+            elif "m3u" in target_url_check:
+                type_data = "m3u"
+            else:
+                type_data = "m3u"
+
         if not playlist_code:
             match = re.search(r'/(?:export|refresh)/([a-zA-Z0-9]+)', export_url or refresh_url)
             if match:
@@ -213,6 +225,7 @@ def fetch_and_update():
             result_entry = {
                 "playlist_id": str(playlist_id),
                 "playlist_code": str(playlist_code),
+                "type_data": str(type_data),
                 "expires": expires_str,
                 "expires_epoch": expires_epoch,
                 "cookies_get": cookies_get_val,
@@ -229,6 +242,7 @@ def fetch_and_update():
             result_entry = {
                 "playlist_id": str(playlist_id),
                 "playlist_code": str(playlist_code),
+                "type_data": str(type_data),
                 "expires": expires_str,
                 "expires_epoch": expires_epoch,
                 "cookies_get": "no",
