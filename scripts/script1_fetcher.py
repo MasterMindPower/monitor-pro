@@ -147,9 +147,17 @@ def fetch_and_update():
 
     for idx, item in enumerate(url_entries, start=1):
         playlist_id = item.get("id", idx)
+        playlist_code = item.get("playlist_code")
         
         refresh_url = item.get("url_refresh_link") or item.get("url") or item.get("playlist_link") or ""
         export_url = item.get("url_export_link") or refresh_url
+
+        if not playlist_code:
+            match = re.search(r'/(?:export|refresh)/([a-zA-Z0-9]+)', export_url or refresh_url)
+            if match:
+                playlist_code = match.group(1)
+            else:
+                playlist_code = str(playlist_id)
 
         if not refresh_url and not export_url:
             continue
@@ -204,10 +212,12 @@ def fetch_and_update():
 
             result_entry = {
                 "playlist_id": str(playlist_id),
+                "playlist_code": str(playlist_code),
                 "expires": expires_str,
                 "expires_epoch": expires_epoch,
                 "cookies_get": cookies_get_val,
                 "cookies_expires": expires_str,
+                "now_active": "inactive",
                 "last_updated": datetime.now(timezone.utc).isoformat()
             }
             results.append(result_entry)
@@ -218,20 +228,49 @@ def fetch_and_update():
             print(f"playlist_{playlist_id} failed")
             result_entry = {
                 "playlist_id": str(playlist_id),
+                "playlist_code": str(playlist_code),
                 "expires": expires_str,
                 "expires_epoch": expires_epoch,
                 "cookies_get": "no",
                 "cookies_expires": expires_str,
+                "now_active": "inactive",
                 "last_updated": datetime.now(timezone.utc).isoformat()
             }
             results.append(result_entry)
 
         log_entries.append({
             "playlist_id": str(playlist_id),
+            "playlist_code": str(playlist_code),
             "status": log_status,
             "message": log_msg,
+            "now_active": "inactive",
             "timestamp": now_ist_str
         })
+
+    # Calculate now_active ranking based on remaining expiration epoch
+    valid_items = [r for r in results if r.get("expires_epoch")]
+    valid_items.sort(key=lambda x: x["expires_epoch"], reverse=True)
+
+    current_rank = 0
+    prev_epoch = None
+    rank_counts = {}
+
+    for item in valid_items:
+        epoch = item["expires_epoch"]
+        if prev_epoch is not None and abs(epoch - prev_epoch) < 10000:
+            rank_counts[current_rank] = rank_counts.get(current_rank, 0) + 1
+            suffix = "-extra" if rank_counts[current_rank] > 1 else ""
+            item["now_active"] = f"active-{current_rank}{suffix}"
+        else:
+            current_rank += 1
+            prev_epoch = epoch
+            rank_counts[current_rank] = 1
+            item["now_active"] = f"active-{current_rank}"
+
+    # Sync now_active to log_entries
+    now_active_map = {r["playlist_id"]: r["now_active"] for r in results}
+    for log_item in log_entries:
+        log_item["now_active"] = now_active_map.get(log_item["playlist_id"], "inactive")
 
     # Write output to cookies.json
     with open(cookies_json_path, "w", encoding="utf-8") as f:
