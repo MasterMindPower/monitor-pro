@@ -1,11 +1,11 @@
 [
   {
     "playlist_id": "1",
-    "expires": "30-07-26 - 09:30 AM",
-    "expires_epoch": 1785384041000,
+    "expires": "30-07-26 - 01:30 PM",
+    "expires_epoch": 1785398442000,
     "cookies_get": "yes",
-    "cookies_expires": "30-07-26 - 09:30 AM",
-    "last_updated": "2026-07-30T04:45:27.699605+00:00"
+    "cookies_expires": "30-07-26 - 01:30 PM",
+    "last_updated": "2026-07-30T04:50:38.472137+00:00"
   },
   {
     "playlist_id": "2",
@@ -13,6 +13,6 @@
     "expires_epoch": 1785399952000,
     "cookies_get": "yes",
     "cookies_expires": "30-07-26 - 01:55 PM",
-    "last_updated": "2026-07-30T04:45:31.797295+00:00"
+    "last_updated": "2026-07-30T04:50:43.620700+00:00"
   }
 ]
