@@ -3,32 +3,32 @@
     "playlist_id": "1",
     "playlist_code": "xzo6w",
     "status": "SUCCESS",
-    "message": "Get latest data at 13-08-2026 06:50:34 PM IST",
-    "now_active": "active-2",
-    "timestamp": "13-08-2026 06:50:34 PM IST"
+    "message": "Get latest data at 13-08-2026 06:55:32 PM IST",
+    "now_active": "active-3",
+    "timestamp": "13-08-2026 06:55:32 PM IST"
   },
   {
     "playlist_id": "2",
     "playlist_code": "ple6l",
     "status": "SUCCESS",
-    "message": "Get latest data at 13-08-2026 06:50:41 PM IST",
+    "message": "Get latest data at 13-08-2026 06:55:40 PM IST",
     "now_active": "active-1",
-    "timestamp": "13-08-2026 06:50:41 PM IST"
+    "timestamp": "13-08-2026 06:55:40 PM IST"
   },
   {
     "playlist_id": "3",
     "playlist_code": "hj2xg",
     "status": "SUCCESS",
-    "message": "Get latest data at 13-08-2026 06:50:54 PM IST",
+    "message": "Get latest data at 13-08-2026 06:55:52 PM IST",
     "now_active": "active-1-extra",
-    "timestamp": "13-08-2026 06:50:54 PM IST"
+    "timestamp": "13-08-2026 06:55:52 PM IST"
   },
   {
     "playlist_id": "4",
     "playlist_code": "lhiiq",
     "status": "SUCCESS",
-    "message": "Get latest data at 13-08-2026 06:50:56 PM IST",
-    "now_active": "active-3",
-    "timestamp": "13-08-2026 06:50:56 PM IST"
+    "message": "Get latest data at 13-08-2026 06:55:54 PM IST",
+    "now_active": "active-2",
+    "timestamp": "13-08-2026 06:55:54 PM IST"
   }
 ]
