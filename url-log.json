@@ -3,32 +3,32 @@
     "playlist_id": "1",
     "playlist_code": "xzo6w",
     "status": "SUCCESS",
-    "message": "Get latest data at 17-08-2026 03:10:24 PM IST",
+    "message": "Get latest data at 17-08-2026 03:15:26 PM IST",
     "now_active": "active-2",
-    "timestamp": "17-08-2026 03:10:24 PM IST"
+    "timestamp": "17-08-2026 03:15:26 PM IST"
   },
   {
     "playlist_id": "2",
     "playlist_code": "ple6l",
     "status": "SUCCESS",
-    "message": "Get latest data at 17-08-2026 03:10:45 PM IST",
+    "message": "Get latest data at 17-08-2026 03:15:32 PM IST",
     "now_active": "active-1",
-    "timestamp": "17-08-2026 03:10:45 PM IST"
+    "timestamp": "17-08-2026 03:15:32 PM IST"
   },
   {
     "playlist_id": "3",
     "playlist_code": "hj2xg",
     "status": "SUCCESS",
-    "message": "Get latest data at 17-08-2026 03:10:57 PM IST",
+    "message": "Get latest data at 17-08-2026 03:15:44 PM IST",
     "now_active": "active-1-extra",
-    "timestamp": "17-08-2026 03:10:57 PM IST"
+    "timestamp": "17-08-2026 03:15:44 PM IST"
   },
   {
     "playlist_id": "4",
     "playlist_code": "lhiiq",
     "status": "SUCCESS",
-    "message": "Get latest data at 17-08-2026 03:10:59 PM IST",
+    "message": "Get latest data at 17-08-2026 03:15:46 PM IST",
     "now_active": "active-3",
-    "timestamp": "17-08-2026 03:10:59 PM IST"
+    "timestamp": "17-08-2026 03:15:46 PM IST"
   }
 ]
