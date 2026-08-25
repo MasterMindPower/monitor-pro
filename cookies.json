@@ -8,29 +8,29 @@
     "cookies_get": "no",
     "cookies_expires": "No Expiry Found",
     "now_active": "inactive",
-    "last_updated": "2026-08-25T15:35:20.839410+00:00"
+    "last_updated": "2026-08-25T15:40:26.273962+00:00"
   },
   {
     "playlist_id": "2",
     "playlist_code": "ple6l",
     "type_data": "m3u",
-    "expires": "26-08-26 - 01:00 AM",
-    "expires_epoch": 1787686213000,
+    "expires": "26-08-26 - 03:00 AM",
+    "expires_epoch": 1787693407000,
     "cookies_get": "yes",
-    "cookies_expires": "26-08-26 - 01:00 AM",
+    "cookies_expires": "26-08-26 - 03:00 AM",
     "now_active": "active-1",
-    "last_updated": "2026-08-25T15:35:31.401122+00:00"
+    "last_updated": "2026-08-25T15:40:40.307489+00:00"
   },
   {
     "playlist_id": "3",
     "playlist_code": "hj2xg",
     "type_data": "m3u",
-    "expires": "26-08-26 - 01:00 AM",
-    "expires_epoch": 1787686213000,
+    "expires": "26-08-26 - 03:00 AM",
+    "expires_epoch": 1787693407000,
     "cookies_get": "yes",
-    "cookies_expires": "26-08-26 - 01:00 AM",
+    "cookies_expires": "26-08-26 - 03:00 AM",
     "now_active": "active-1-extra",
-    "last_updated": "2026-08-25T15:35:33.111368+00:00"
+    "last_updated": "2026-08-25T15:40:41.988890+00:00"
   },
   {
     "playlist_id": "4",
@@ -41,6 +41,6 @@
     "cookies_get": "no",
     "cookies_expires": "No Expiry Found",
     "now_active": "inactive",
-    "last_updated": "2026-08-25T15:35:33.388293+00:00"
+    "last_updated": "2026-08-25T15:40:42.308140+00:00"
   }
 ]
