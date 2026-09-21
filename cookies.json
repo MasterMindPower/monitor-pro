@@ -8,7 +8,7 @@
     "cookies_get": "yes",
     "cookies_expires": "21-09-26 - 12:13 PM",
     "now_active": "active-2",
-    "last_updated": "2026-09-21T05:55:30.679770+00:00"
+    "last_updated": "2026-09-21T06:00:54.767778+00:00"
   },
   {
     "playlist_id": "2",
@@ -19,18 +19,18 @@
     "cookies_get": "yes",
     "cookies_expires": "20-09-26 - 05:30 PM",
     "now_active": "active-3",
-    "last_updated": "2026-09-21T05:55:31.705615+00:00"
+    "last_updated": "2026-09-21T06:00:55.591913+00:00"
   },
   {
     "playlist_id": "3",
     "playlist_code": "hj2xg",
     "type_data": "m3u",
-    "expires": "21-09-26 - 04:30 PM",
-    "expires_epoch": 1789988407000,
+    "expires": "21-09-26 - 05:30 PM",
+    "expires_epoch": 1789992007000,
     "cookies_get": "yes",
-    "cookies_expires": "21-09-26 - 04:30 PM",
+    "cookies_expires": "21-09-26 - 05:30 PM",
     "now_active": "active-1",
-    "last_updated": "2026-09-21T05:55:33.401862+00:00"
+    "last_updated": "2026-09-21T06:00:57.691235+00:00"
   },
   {
     "playlist_id": "4",
@@ -41,6 +41,6 @@
     "cookies_get": "yes",
     "cookies_expires": "No Expiry Found",
     "now_active": "inactive",
-    "last_updated": "2026-09-21T05:55:34.446083+00:00"
+    "last_updated": "2026-09-21T06:00:58.646248+00:00"
   }
 ]
