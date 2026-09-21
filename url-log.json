@@ -2,33 +2,33 @@
   {
     "playlist_id": "1",
     "playlist_code": "ple6l",
-    "status": "FAILED",
-    "message": "Fail to get latest at 21-09-2026 09:00:33 AM IST",
-    "now_active": "inactive",
-    "timestamp": "21-09-2026 09:00:33 AM IST"
+    "status": "SUCCESS",
+    "message": "Get latest data at 21-09-2026 09:05:22 AM IST",
+    "now_active": "active-2",
+    "timestamp": "21-09-2026 09:05:22 AM IST"
   },
   {
     "playlist_id": "2",
     "playlist_code": "ahjwq",
     "status": "SUCCESS",
-    "message": "Get latest data at 21-09-2026 09:01:14 AM IST",
-    "now_active": "active-2",
-    "timestamp": "21-09-2026 09:01:14 AM IST"
+    "message": "Get latest data at 21-09-2026 09:05:41 AM IST",
+    "now_active": "active-3",
+    "timestamp": "21-09-2026 09:05:41 AM IST"
   },
   {
     "playlist_id": "3",
     "playlist_code": "hj2xg",
     "status": "SUCCESS",
-    "message": "Get latest data at 21-09-2026 09:01:15 AM IST",
+    "message": "Get latest data at 21-09-2026 09:05:42 AM IST",
     "now_active": "active-1",
-    "timestamp": "21-09-2026 09:01:15 AM IST"
+    "timestamp": "21-09-2026 09:05:42 AM IST"
   },
   {
     "playlist_id": "4",
     "playlist_code": "s8qyl",
     "status": "SUCCESS",
-    "message": "Get latest data at 21-09-2026 09:01:17 AM IST",
+    "message": "Get latest data at 21-09-2026 09:05:43 AM IST",
     "now_active": "inactive",
-    "timestamp": "21-09-2026 09:01:17 AM IST"
+    "timestamp": "21-09-2026 09:05:43 AM IST"
   }
 ]
