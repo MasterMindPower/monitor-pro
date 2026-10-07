@@ -3,12 +3,12 @@
     "playlist_id": "1",
     "playlist_code": "ple6l",
     "type_data": "m3u",
-    "expires": "07-10-26 - 08:30 PM",
-    "expires_epoch": 1791385204000,
-    "cookies_get": "yes",
-    "cookies_expires": "07-10-26 - 08:30 PM",
-    "now_active": "active-1",
-    "last_updated": "2026-10-07T09:10:48.803103+00:00"
+    "expires": "No Expiry Found",
+    "expires_epoch": null,
+    "cookies_get": "no",
+    "cookies_expires": "No Expiry Found",
+    "now_active": "inactive",
+    "last_updated": "2026-10-07T09:16:09.420515+00:00"
   },
   {
     "playlist_id": "2",
@@ -19,7 +19,7 @@
     "cookies_get": "yes",
     "cookies_expires": "20-09-26 - 05:30 PM",
     "now_active": "active-2",
-    "last_updated": "2026-10-07T09:10:50.084716+00:00"
+    "last_updated": "2026-10-07T09:16:10.870340+00:00"
   },
   {
     "playlist_id": "3",
@@ -29,7 +29,7 @@
     "expires_epoch": 1791385204000,
     "cookies_get": "yes",
     "cookies_expires": "07-10-26 - 08:30 PM",
-    "now_active": "active-1-extra",
-    "last_updated": "2026-10-07T09:10:52.215019+00:00"
+    "now_active": "active-1",
+    "last_updated": "2026-10-07T09:16:13.651472+00:00"
   }
 ]
